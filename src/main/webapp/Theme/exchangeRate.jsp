@@ -19,8 +19,8 @@
         <option value="usd">USD-VND</option>
         <option value="vnd">VND-USD</option>
     </select>
-    <input type="number" name="quantityMoney" placeholder="Input quantity" >
-    <input type="number" name="exchangeRate" value="1" disabled>
+    <input type="text" name="quantityMoney" value="${moneyType.quantityMoney}" placeholder="Input quantity" >
+<%--    <input type="text" name="result" value="${result}" >--%>
 
     <button type="submit" name="submit" value="exchange">exchange</button>
 </form>

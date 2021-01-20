@@ -1,7 +1,8 @@
 package com.TuMangement.Exchange;
 
-import com.TuMangement.Exchange.Model.Money;
 import com.TuMangement.Exchange.Model.MoneyType;
+import com.TuMangement.Exchange.service.Exchange;
+import com.TuMangement.Exchange.service.IExchange;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -11,7 +12,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @EnableWebMvc
@@ -31,7 +31,7 @@ public class AppConfig extends WebMvcConfigurerAdapter implements ApplicationCon
         return viewResolver;
     }
     @Bean
-    public Money moneyInstance(){
-        return new MoneyType();
+    public IExchange exchange(){
+        return new Exchange();
     }
 }

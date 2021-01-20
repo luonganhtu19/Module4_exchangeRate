@@ -1,7 +1,8 @@
 package com.TuMangement.Exchange.Controller;
 
-import com.TuMangement.Exchange.Model.Money;
 import com.TuMangement.Exchange.Model.MoneyType;
+import com.TuMangement.Exchange.service.IExchange;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -11,25 +12,18 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/exchange")
 public class controllerExchange {
     @Autowired
-    private Money money;
-   @GetMapping
-   public ModelAndView demo(){
-       ModelAndView modelAndView=new ModelAndView("exchangeRate");
-       modelAndView.addObject("money",money);
-       return modelAndView;
-   }
-   @PostMapping
-    public ModelAndView demo(@ModelAttribute Money money ){
+    private IExchange iExchange;
+    @GetMapping
+    public ModelAndView exchangeHome(){
         ModelAndView modelAndView=new ModelAndView("exchangeRate");
-        MoneyType money1=(MoneyType) money;
-        if (money1==null){
-        }
-        else if (money1.getNameMoney().equals("usd")){
-            money1.setExchangeRate(23000*money1.getQuantityMoney());
-        }else {
-            money1.setExchangeRate(money1.getQuantityMoney()/23000);
-        }
-        modelAndView.addObject("money",(Money) money1);
+        modelAndView.addObject( "moneyType",new MoneyType());
+        return modelAndView;
+    }
+    @PostMapping
+    public ModelAndView exchange(@ModelAttribute MoneyType moneyType){
+        ModelAndView modelAndView=new ModelAndView("exchangeRate");
+        modelAndView.addObject("result", iExchange.exchange(moneyType));
+        modelAndView.addObject(moneyType);
         return modelAndView;
     }
 }

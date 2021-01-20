@@ -1,6 +1,6 @@
 package com.TuMangement.Exchange.Model;
 
-public class MoneyType implements Money {
+public class MoneyType {
     private String NameMoney;
     private double quantityMoney;
     private double exchangeRate;
@@ -34,8 +34,7 @@ public class MoneyType implements Money {
         this.quantityMoney = quantityMoney;
     }
 
-    @Override
-    public double exchangeRate() {
+    public double getExchangeRate() {
         return exchangeRate;
     }
 
